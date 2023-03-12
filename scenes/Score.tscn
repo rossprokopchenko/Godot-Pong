@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bapw5ihhdg3gq"]
+
+[ext_resource type="Script" path="res://scripts/PlayerScore.gd" id="1_7a4nd"]
+[ext_resource type="Script" path="res://scripts/EnemyScore.gd" id="2_iablp"]
+
+[node name="Score" type="CanvasLayer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="PlayerScore" type="Label" parent="."]
+offset_left = 541.0
+offset_right = 599.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "00"
+script = ExtResource("1_7a4nd")
+
+[node name="EnemyScore" type="Label" parent="."]
+offset_left = 641.0
+offset_right = 699.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "00"
+script = ExtResource("2_iablp")

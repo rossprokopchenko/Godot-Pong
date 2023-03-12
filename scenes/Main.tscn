@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5t752vua376n"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_tiu8v"]
+[ext_resource type="PackedScene" uid="uid://d0b5q18ugywkm" path="res://scenes/Player.tscn" id="1_ttpnm"]
+[ext_resource type="PackedScene" uid="uid://cmwrgatdgfge4" path="res://scenes/Background.tscn" id="2_17gvr"]
+[ext_resource type="PackedScene" uid="uid://dn6gxsxb551sv" path="res://scenes/Ball.tscn" id="2_gyydj"]
+[ext_resource type="PackedScene" uid="uid://16vh5qpa1sai" path="res://scenes/Enemy.tscn" id="3_r357m"]
+[ext_resource type="PackedScene" uid="uid://wgp64ya68om0" path="res://scenes/TopBound.tscn" id="4_ft4wo"]
+[ext_resource type="PackedScene" uid="uid://db0e7u1poegkl" path="res://scenes/BottomBound.tscn" id="5_ywj6r"]
+[ext_resource type="PackedScene" uid="uid://c0q0t8fomujl1" path="res://scenes/PlayerNet.tscn" id="6_iwh5o"]
+[ext_resource type="PackedScene" uid="uid://dch1qomj4sn8r" path="res://scenes/EnemyNet.tscn" id="7_fuf8x"]
+[ext_resource type="PackedScene" uid="uid://bapw5ihhdg3gq" path="res://scenes/Score.tscn" id="8_qmmym"]
+[ext_resource type="PackedScene" uid="uid://c41bddjclof64" path="res://scenes/PauseMenu.tscn" id="10_jadic"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tiu8v")
+
+[node name="Node2D" parent="." instance=ExtResource("2_17gvr")]
+
+[node name="Player" parent="." instance=ExtResource("1_ttpnm")]
+position = Vector2(40, 360)
+
+[node name="Ball" parent="." instance=ExtResource("2_gyydj")]
+position = Vector2(606, 354)
+
+[node name="Enemy" parent="." instance=ExtResource("3_r357m")]
+position = Vector2(1200, 360)
+
+[node name="TopBound" parent="." instance=ExtResource("4_ft4wo")]
+
+[node name="BottomBound" parent="." instance=ExtResource("5_ywj6r")]
+
+[node name="PlayerNet" parent="." instance=ExtResource("6_iwh5o")]
+
+[node name="EnemyNet" parent="." instance=ExtResource("7_fuf8x")]
+
+[node name="Score" parent="." instance=ExtResource("8_qmmym")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_jadic")]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 620.0
+offset_top = 360.0
+offset_right = 620.0
+offset_bottom = 360.0
+size_flags_vertical = 4
+
+[connection signal="area_shape_entered" from="Player" to="Ball" method="_on_player_area_shape_entered"]
+[connection signal="area_shape_entered" from="Enemy" to="Ball" method="_on_enemy_area_shape_entered"]
+[connection signal="area_shape_entered" from="TopBound" to="Ball" method="_on_top_bound_area_shape_entered"]
+[connection signal="area_shape_entered" from="BottomBound" to="Ball" method="_on_bottom_bound_area_shape_entered"]
+[connection signal="area_shape_exited" from="PlayerNet" to="Ball" method="_on_player_net_area_shape_exited"]
+[connection signal="area_shape_exited" from="EnemyNet" to="Ball" method="_on_enemy_net_area_shape_exited"]
